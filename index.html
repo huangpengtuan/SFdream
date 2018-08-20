@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8" />
+		<title>顺丰梦·劳动美  第二届网络文化艺术节</title>
+	    <!---
+	    *  网页基本设置
+	    ================================================== -->		
+		<meta charset="UTF-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"> 
+		<meta name="description" content="顺丰梦·劳动美第二届网络文化艺术节" />
+		<meta name="author" content="顺丰梦·劳动美第二届网络文化艺术节"/>
+		<meta name="keywords" content="顺丰梦·劳动美第二届网络文化艺术节" />
+		<!--禁止百度转码-->
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<!--兼容ie-->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	    <!---
+	    *  移动端设置
+	    ================================================== -->	
+	    <meta name="viewport" content="width=device-width,user-scalable=no,initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0"/>		
+		<link rel="stylesheet" type="text/css" href="css/reset.css"/>
+		<link rel="stylesheet" type="text/css" href="css/base.css"/>
+		
+		<script src="./lib/jquery.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./lib/vue.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./lib/vue-router.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./lib/preloadjs.min.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./lib/jquery.pagination.js" type="text/javascript"></script>
+		<script src="./lib/iosSelect.js" type="text/javascript"></script>
+		<script src="./lib/areaData_v2.js" type="text/javascript"></script>		
+		<script src="./lib/cos-js-sdk-v4.js" type="text/javascript"></script>				
+		<script src="./lib/jquery.barrager.js" type="text/javascript"></script>			
+		
+		<script type="text/JavaScript" src="http://res.wx.qq.com/open/js/jweixin-1.0.0.js"></script>
+		<script src="https://cdn.sf-companion.com/cdn_source/lib/exif.js"></script>
+
+		<script type="text/javascript">
+			//01设置rem
+	        (function (doc, win) {      	        	
+	            var docEl = doc.documentElement,
+	                    isIOS = navigator.userAgent.match(/iphone|ipod|ipad/gi),
+	                    dpr = isIOS ? Math.min(win.devicePixelRatio, 2) : 1,
+	                    scale = 2 / dpr,
+	                    resizeEvt = 'orientationchange' in window ? 'orientationchange' : 'resize';
+	            docEl.dataset.dpr = dpr;
+	            var recalc = function () {
+	                var width = docEl.clientWidth;
+	                if (width / dpr > 750) {
+	                    width = 750 * dpr;
+	                }
+	                docEl.style.fontSize = 100 * (width / 750) + 'px';
+	            };
+	            recalc();
+	            if (!doc.addEventListener) return;
+	            win.addEventListener(resizeEvt, recalc, false);
+	        })(document, window);			
+			
+			window.alert = function(name){
+			  var iframe = document.createElement("IFRAME");
+			  iframe.style.display="none";
+			  iframe.setAttribute("src", 'data:text/plain,');
+			  document.documentElement.appendChild(iframe);
+			  window.frames[0].window.alert(name);
+			  iframe.parentNode.removeChild(iframe);
+			 };					
+
+
+		</script>
+	</head>
+	<body>
+		<div id="zhaolian">	
+    	  	<audio id="myaudio" src="img/background-music.mp3" loop="loop">
+		    	<source src="img/background-music.mp3" type="audio/mpeg">
+		  	</audio>			
+			<router-view></router-view>	
+			
+
+			
+	
+
+
+		</div>	
+		
+
+
+
+		
+		
+		
+		
+		
+		<script src="./js/bundle.js" type="text/javascript" charset="utf-8"></script>	
+		<script type="text/javascript">
+			//音频预加载
+		  	var load_audio = function (id) {
+	            var audio = document.getElementById(id);
+
+				audio.src = "img/background-music.mp3";
+	            audio.play();
+	            	audio.pause();        
+	            document.addEventListener("WeixinJSBridgeReady", function (){
+		                audio.play();
+			            	audio.pause();
+	                }, false);      
+	            document.addEventListener('YixinJSBridgeReady', function (){
+	                    audio.play();
+			            	audio.pause();
+	                }, false);
+		  	}					
+			load_audio('myaudio');	
+			
+		    function audioAutoPlay(id) {
+		        var audio = document.getElementById(id);
+		        sessionStorage.setItem("musiconoff",false)
+		        audio.play();
+		        document.addEventListener("WeixinJSBridgeReady", function () {
+		            audio.play();
+		        }, false);
+		        document.addEventListener('YixinJSBridgeReady', function () {
+		            audio.play();
+		        }, false);
+		    }						
+			audioAutoPlay('myaudio')			
+			
+
+			
+			
+			
+			
+		</script>
+		
+	</body>
+</html>
